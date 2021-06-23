@@ -5,7 +5,7 @@
 #### Step 1: clone git repo
 
 ```
-git clone 
+git clone https://github.com/nikhil-infobeans/nodejs-crud.git
 ```
 #### Step 2: Configure .env file
 
