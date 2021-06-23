@@ -1,0 +1,127 @@
+{
+	"info": {
+		"_postman_id": "0e4029fd-cc38-4b24-ba68-b656f0321174",
+		"name": "nodejs-crud",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Register User",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Nikhil\",\n    \"last_name\":\"Kakde\",\n    \"email\": \"nikhil1@gmail.com\",\n    \"password\": \"Test@123\",\n    \"mobile_number\": \"111111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/register",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"register"
+					],
+					"query": [
+						{
+							"key": "",
+							"value": "",
+							"disabled": true
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get All Users",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/getAllUsers",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"getAllUsers"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get User Detail By Id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/getUserDetail/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"getUserDetail",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\": \"Nikhil\",\n    \"last_name\":\"Kakde\",\n    \"mobile_number\": \"111111\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "{{url}}/users/editUser/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"editUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete User",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "{{url}}/users/deleteUser/1",
+					"host": [
+						"{{url}}"
+					],
+					"path": [
+						"users",
+						"deleteUser",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
