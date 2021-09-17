@@ -56,7 +56,15 @@ const userValidationRules = [
       .isNumeric().withMessage('Invalid user id'),
   ];
 
-const validate = (schemas)  => {
+  const validateLoginUser = [
+    body('email').not().isEmpty().withMessage('First Name is required.').bail()
+      .isEmail().withMessage('Please enter a valid e-mail address.').bail(),
+    body('password')
+      .not().isEmpty().withMessage('First Name is required').bail()
+      .matches(/^(?=.*[0-9])(?=.*[a-zA-Z])([A-Za-z0-9!@#$^&*()_]){8,14}$/).withMessage('Password must contain 8-14 characters with at least one number, one special character, uppercase and lowercase letter.')
+  ];
+
+  const validate = (schemas)  => {
 
     return async (req, res, next) => {
       await Promise.all(schemas.map((schema) => schema.run(req)));
@@ -80,5 +88,6 @@ module.exports = {
   userValidationRules,
   validateUserById,
   validateEditUser,
+  validateLoginUser,
   validate,
 }

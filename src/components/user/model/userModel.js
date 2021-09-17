@@ -2,6 +2,7 @@
 
 const pool = require('../../../../config/db-connect');
 const bcrypt = require('bcrypt');
+const jwt = require("jsonwebtoken");
 
 module.exports = {
     registerUser: async (userData, response) => {
@@ -91,7 +92,6 @@ module.exports = {
         return new Promise((resolve, reject) => {
             pool.query(
                 `DELETE from users where id = ?`,userId, function(error, results) {
-                    console.log(error, '----', results);
                     if(error) {
                         return reject(new Error('Database error!!'));
                     } else {
@@ -104,5 +104,47 @@ module.exports = {
                 }
             )
         });  
+    },
+    loginUser: async (userData) => {
+        let username = userData.email;
+        return new Promise((resolve, reject) => {
+            pool.query(
+                `SELECT firstname, lastname, email, password, mobile_number from users where email = ?`,[username], function(error, results) {
+                    if(error) {
+                        return reject(new Error('Invalid credentials'));
+                    } else {
+                        if(results.length === 0) {
+                            return reject(new Error("Invalid credentials."));
+                        } else {
+                            //Match password
+                            let userPassword = results[0].password;
+                            let userDetails = results[0];
+                            bcrypt.compare(userData.password, userPassword, (err, data) => {
+                                //if error than throw error
+                                if (err) {
+                                    return reject(new Error("Invalid credentials."));
+                                }
+                                //if both match than you can do anything
+                                if (data) {
+                                    // Create token
+                                    const token = jwt.sign({
+                                        email: userDetails.email,
+                                        firstname: userDetails.firstname,
+                                        lastname: userDetails.lastname
+                                    }, process.env.TOKEN_KEY,
+                                        {
+                                        expiresIn: "2h",
+                                        }
+                                    );
+                                    return resolve(token);
+                                } else {
+                                    return reject(new Error("Invalid credentials."));
+                                }
+                            })
+                        }
+                    }
+                }
+            )
+        });
     },
 }
