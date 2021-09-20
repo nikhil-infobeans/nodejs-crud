@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "start": "nodemon index.js",
-    "go-forum-api-db-migrate": "node node_modules/db-migrate/bin/db-migrate"
+    "go-forum-api-db-migrate": "node node_modules/db-migrate/bin/db-migrate",
+    "dev": "nodemon index.js"
   },
   "author": "Nikhil Kakde",
   "license": "ISC",
