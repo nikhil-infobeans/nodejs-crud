@@ -4,8 +4,9 @@ RUN mkdir -p /usr/src/app
 
 WORKDIR /usr/src/app
 
-RUN apk add \
-    --no-cache \
-    npm
-
+COPY package*.json ./
+RUN npm install
+COPY . .
 EXPOSE 5000
+
+CMD [ "npm", "run", "dev" ]
