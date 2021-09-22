@@ -1,6 +1,6 @@
 'use strict';
 
-const { registerUser, getAllUser, getUserById, editUserById, deleteUserById } = require('../model/userModel');
+const { registerUser, getAllUser, getUserById, editUserById, deleteUserById, loginUser } = require('../model/userModel');
 
 module.exports = {
     registerUser: (req, res) => {
@@ -89,4 +89,26 @@ module.exports = {
             });
         }
     },
+    loginUser: async(req, res) => {
+        try {
+            const userData = await loginUser(req.body);
+            return res.status(200).json({
+                success: false,
+                message: 'User login successfully.',
+                data: userData
+            });
+        } catch (error) {
+            return res.status(200).json({
+                success: false,
+                message: error.message,
+                data: []
+            });
+        }
+    },
+    requireAuth: (req, res) => {
+        return res.status(200).json({
+            success: true,
+            message: 'Token successfully authenticated'
+        });
+    }
 }
