@@ -54,7 +54,7 @@ cp .dist.env .env
 docker-compose build
 docker-compose up -d
 ```
-#### Step 4: Run application (Port number is 5000)
+#### Step 4: Run application (Port number is 5000 )
 
 ```
 https://localhost:5000
