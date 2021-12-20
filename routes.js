@@ -1,4 +1,4 @@
-// Import the routes from different modules
+// Import the routes from different modules test
 const userRoutes = require('./src/components/user/routes');
 const router = require('express').Router();
 
